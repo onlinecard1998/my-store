@@ -7,9 +7,35 @@
 
 <body>
 
-<h1>مرحبا بكم في متجري</h1>
+<h1>متجري الإلكتروني</h1>
 
-<p>هذا أول متجر لنا على GitHub</p>
+<div id="products"></div>
+
+<script>
+
+fetch("products.json")
+.then(response => response.json())
+.then(data => {
+
+let html = "";
+
+data.forEach(product => {
+
+html += `
+<div style="border:1px solid #ccc;padding:10px;margin:10px;">
+<h3>${product.name}</h3>
+<p>السعر: ${product.price}$</p>
+<button>شراء</button>
+</div>
+`;
+
+});
+
+document.getElementById("products").innerHTML = html;
+
+});
+
+</script>
 
 </body>
 </html>
